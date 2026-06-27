@@ -1,0 +1,23 @@
+name: 누락된 공식 근거
+description: 출처가 약하거나 공식 근거가 더 필요한 부분을 제보합니다.
+labels: ["source-needed", "agent-review"]
+body:
+  - type: input
+    id: page
+    attributes:
+      label: 문서 URL 또는 표제어
+    validations:
+      required: true
+  - type: textarea
+    id: claim
+    attributes:
+      label: 근거가 필요한 주장
+    validations:
+      required: true
+  - type: textarea
+    id: candidate-source
+    attributes:
+      label: 후보 공식 근거
+      description: 있다면 공식 자료 위치를 적어 주세요.
+    validations:
+      required: false

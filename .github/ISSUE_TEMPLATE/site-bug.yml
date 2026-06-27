@@ -1,0 +1,28 @@
+name: 사이트 UI/UX 오류
+description: 레이아웃, 접근성, 각주, 테마 등 사이트 동작 문제를 제보합니다.
+labels: ["site-bug", "agent-review"]
+body:
+  - type: input
+    id: url
+    attributes:
+      label: 문제가 보이는 URL
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: 영역
+      options:
+        - 테마
+        - 각주
+        - 레이아웃
+        - 접근성
+        - 기타
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: 문제 설명
+    validations:
+      required: true

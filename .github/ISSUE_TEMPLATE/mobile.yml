@@ -1,0 +1,23 @@
+name: 모바일 문제
+description: 모바일 화면에서 읽기 어렵거나 조작하기 어려운 문제를 제보합니다.
+labels: ["mobile", "agent-review"]
+body:
+  - type: input
+    id: device
+    attributes:
+      label: 기기와 브라우저
+      placeholder: 예) iPhone Safari, Android Chrome
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: 문제가 보이는 URL
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: 문제 설명
+    validations:
+      required: true

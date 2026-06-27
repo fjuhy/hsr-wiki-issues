@@ -1,0 +1,22 @@
+name: 오탈자/문장 품질 문제
+description: 오탈자, 어색한 문장, 읽기 어려운 표현을 제보합니다.
+labels: ["typo", "agent-review"]
+body:
+  - type: input
+    id: page
+    attributes:
+      label: 문서 URL 또는 표제어
+    validations:
+      required: true
+  - type: textarea
+    id: sentence
+    attributes:
+      label: 문제가 있는 문장
+    validations:
+      required: true
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: 제안하는 수정
+    validations:
+      required: false

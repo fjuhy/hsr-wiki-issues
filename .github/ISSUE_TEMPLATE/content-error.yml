@@ -1,0 +1,24 @@
+name: 문서 내용 오류
+description: 공식 근거와 다르거나 해석이 잘못된 문서를 제보합니다.
+labels: ["content-error", "agent-review"]
+body:
+  - type: input
+    id: page
+    attributes:
+      label: 문서 URL 또는 표제어
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: 무엇이 잘못되었나요?
+      description: 문제가 되는 문장과 이유를 적어 주세요.
+    validations:
+      required: true
+  - type: textarea
+    id: official-source
+    attributes:
+      label: 확인 가능한 공식 근거
+      description: HoYoWiki, 게임 본편, 게임 내 자료실, 공식 KR YouTube 링크나 위치를 적어 주세요.
+    validations:
+      required: false

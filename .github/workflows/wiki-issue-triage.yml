@@ -1,0 +1,22 @@
+name: Wiki issue triage
+
+on:
+  issues:
+    types: [opened, edited, labeled]
+  workflow_dispatch:
+
+permissions:
+  issues: write
+  contents: read
+
+jobs:
+  triage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Dry-run triage
+        run: |
+          python3 scripts/triage_wiki_issue.py \
+            --title "${{ github.event.issue.title }}" \
+            --labels "${{ join(github.event.issue.labels.*.name, ',') }}" \
+            --dry-run

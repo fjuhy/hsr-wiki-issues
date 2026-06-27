@@ -1,0 +1,17 @@
+name: 댓글/운영/악용 신고
+description: 댓글 악용, 스팸, 개인정보 노출, 운영 관련 문제를 신고합니다.
+labels: ["abuse", "agent-review"]
+body:
+  - type: input
+    id: page
+    attributes:
+      label: 관련 페이지
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: 신고 내용
+      description: 개인정보를 그대로 붙여넣지 말고 필요한 범위만 적어 주세요.
+    validations:
+      required: true
