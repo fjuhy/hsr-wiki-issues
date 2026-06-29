@@ -1,0 +1,54 @@
+name: Wiki document request dispatch
+
+on:
+  issues:
+    types: [opened, edited, reopened, labeled]
+  workflow_dispatch:
+
+permissions:
+  issues: write
+  contents: read
+
+jobs:
+  dispatch:
+    if: github.event_name == 'issues' && (contains(join(github.event.issue.labels.*.name, ','), 'document-request') || startsWith(github.event.issue.title, '[문서 요청]'))
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dispatch source repository harness
+        env:
+          GH_TOKEN: ${{ github.token }}
+          DISPATCH_TOKEN: ${{ secrets.HSR_RAG_REPO_DISPATCH_TOKEN }}
+          ISSUE_URL: ${{ github.event.issue.html_url }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_REPO: ${{ github.repository }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+          ISSUE_LABELS: ${{ join(github.event.issue.labels.*.name, ',') }}
+        run: |
+          if [ -z "$DISPATCH_TOKEN" ]; then
+            if [ "${{ github.event.action }}" = "opened" ]; then
+              gh issue comment "$ISSUE_NUMBER" --repo "$ISSUE_REPO" --body "문서 요청이 접수되었습니다. 자동 하네스 dispatch 토큰이 아직 설정되지 않아 유지보수자 검토 대기 상태로 둡니다."
+            fi
+            exit 0
+          fi
+          python3 - <<'PY' > /tmp/wiki-document-request-dispatch.json
+          import json, os
+          payload = {
+              "event_type": "wiki_document_request",
+              "client_payload": {
+                  "issue_url": os.environ["ISSUE_URL"],
+                  "issue_repo": os.environ["ISSUE_REPO"],
+                  "issue_number": os.environ["ISSUE_NUMBER"],
+                  "title": os.environ["ISSUE_TITLE"],
+                  "labels": os.environ["ISSUE_LABELS"],
+                  "mode": "auto",
+              },
+          }
+          print(json.dumps(payload, ensure_ascii=False))
+          PY
+          curl -fsS \
+            -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer $DISPATCH_TOKEN" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            https://api.github.com/repos/fjuhy/hsr-dialogue-rag/dispatches \
+            --data @/tmp/wiki-document-request-dispatch.json

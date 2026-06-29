@@ -1,6 +1,9 @@
 - name: content-error
   color: "b60205"
   description: 문서 내용 오류
+- name: document-request
+  color: "0052cc"
+  description: 새 문서 작성 요청
 - name: typo
   color: "cfd3d7"
   description: 오탈자 또는 문장 품질
@@ -25,3 +28,27 @@
 - name: needs-info
   color: "ededed"
   description: 추가 정보 필요
+- name: accepted-for-harness
+  color: "0e8a16"
+  description: 자동 작성 하네스 접수
+- name: draft-ready
+  color: "1d76db"
+  description: 검증 초안 생성됨
+- name: already-documented
+  color: "bfdadc"
+  description: 이미 문서화됨
+- name: already-planned
+  color: "bfd4f2"
+  description: 문서화 작업 예정
+- name: under-review
+  color: "fbca04"
+  description: 문서화 검토중
+- name: insufficient-evidence
+  color: "d93f0b"
+  description: 독립 문서 근거 부족
+- name: rejected
+  color: "b60205"
+  description: 범위 밖 또는 반려
+- name: auto-draft
+  color: "5319e7"
+  description: 조건 충족 시 LLM 초안까지 실행

@@ -1,0 +1,57 @@
+name: 새 문서 작성 요청
+description: 아직 없는 설정/세계관 문서를 요청합니다.
+title: "[문서 요청] "
+labels: ["document-request", "agent-review"]
+body:
+  - type: input
+    id: title
+    attributes:
+      label: 요청 표제어
+      description: 만들고 싶은 문서 이름을 적어 주세요.
+      placeholder: 예: 엘리오
+    validations:
+      required: true
+  - type: input
+    id: aliases
+    attributes:
+      label: 다른 표기 또는 별칭
+      description: 영문명, 띄어쓰기 없는 표기, 같은 인물의 다른 이름이 있으면 적어 주세요.
+      placeholder: 예: Elio, 운명의 노예
+    validations:
+      required: false
+  - type: dropdown
+    id: page_type
+    attributes:
+      label: 문서 유형
+      options:
+        - 인물
+        - NPC
+        - 세력
+        - 조직
+        - 장소
+        - 세계
+        - 운명의 길
+        - 에이언즈
+        - 개념
+        - 사건
+        - 기록/용어
+    validations:
+      required: true
+  - type: textarea
+    id: official_evidence
+    attributes:
+      label: 공식 근거
+      description: HoYoWiki 링크, 게임 본편 임무/대사 위치, 게임 내 자료실, 공식 한국어 영상 링크를 적어 주세요.
+      placeholder: |
+        - HoYoWiki:
+        - 게임 본편:
+        - 공식 영상/자료실:
+    validations:
+      required: true
+  - type: textarea
+    id: reason
+    attributes:
+      label: 필요한 이유
+      description: 왜 독립 문서가 필요하다고 보는지, 기존 문서의 어느 부분과 연결되는지 적어 주세요.
+    validations:
+      required: true

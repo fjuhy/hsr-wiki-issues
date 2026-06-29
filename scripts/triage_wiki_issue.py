@@ -7,6 +7,7 @@ import re
 from typing import Any
 
 TYPE_LABELS = {
+    "document-request": "document-request-review",
     "content-error": "official-evidence-required",
     "typo": "copy-edit",
     "source-needed": "official-evidence-required",
